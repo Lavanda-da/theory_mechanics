@@ -23,7 +23,7 @@ Vx = sp.diff(x, t)
 Vy = sp.diff(y, t)
 Ax = sp.diff(Vx, t)
 Ay = sp.diff(Vy, t)
-w = sp.diff(phi, t)
+w = sp.diff(phi, t)  # angular speed
 
 X = np.zeros_like(T)
 Y = np.zeros_like(T)
@@ -54,23 +54,23 @@ P, = ax1.plot(X[0], Y[0], marker='o')
 ArrowX = np.array([-0.2, 0, -0.2])
 ArrowY = np.array([0.1, 0, -0.1])
 
-RVLine, = ax1.plot([0, X[0]], [0, Y[0]], 'grey')
+RVLine, = ax1.plot([0, X[0]], [0, Y[0]], 'grey')  # radius-vector
 
 RVArrowX, RVArrowY = Rot2D(ArrowX, ArrowY, math.atan2(Y[0], X[0]))
 RVArrow, = ax1.plot(RVArrowX+X[0], RVArrowY+Y[0], 'grey')
 
-VLine, = ax1.plot([X[0], X[0]+VX[0]], [Y[0], Y[0]+VY[0]], 'red')
+VLine, = ax1.plot([X[0], X[0]+VX[0]], [Y[0], Y[0]+VY[0]], 'red')  # speed
 
 VArrowX, VArrowY = Rot2D(ArrowX, ArrowY, math.atan2(VY[0], VX[0]))
 VArrow, = ax1.plot(VArrowX+X[0]+VX[0], VArrowY+Y[0]+VY[0], 'red')
 
-ALine, = ax1.plot([X[0], X[0]+AX[0]], [Y[0], Y[0]+AY[0]], 'green')
+ALine, = ax1.plot([X[0], X[0]+AX[0]], [Y[0], Y[0]+AY[0]], 'green')  # acceleration
 
 AArrowX, AArrowY = Rot2D(ArrowX, ArrowY, math.atan2(AY[0], AX[0]))
 AArrow, = ax1.plot(AArrowX+X[0]+AX[0], AArrowY+Y[0]+AY[0], 'green')
 
-RX, RY = Rot2D(X[0]+VX[0]/W[0], Y[0]+VY[0]/W[0], Pi/2)
-RLine, = ax1.plot([X[0], RX], [Y[0], RY], 'black')
+RX, RY = Rot2D(X[0]+VX[0]/W[0], Y[0]+VY[0]/W[0], Pi/2)  # VX[0]/W[0] - module of radius on x
+RLine, = ax1.plot([X[0], RX], [Y[0], RY], 'black')  # radius of curvature
 
 RArrowX, RArrowY = Rot2D(ArrowX, ArrowY, math.atan2(RY, RX))
 RArrow, = ax1.plot(RArrowX+RX, RArrowY+RY, 'black')
