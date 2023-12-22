@@ -26,19 +26,19 @@ Steps = 1001
 t_fin = 20
 t = np.linspace(0, t_fin, Steps)
 
-psi0 = 0
-phi0 = np.pi / 6
+phi0 = 0
+psi0 = np.pi / 6
+dphi0 = 0.5
 dpsi0 = 0.5
-dphi0 = 0
-y0 = [psi0, phi0, dpsi0, dphi0]
+y0 = [phi0, psi0, dphi0, dpsi0]
 
 Y = odeint(odesys, y0, t, (M, m, R, c, a, l, g))
-psi = Y[:, 0]
-phi = Y[:, 1]
-dpsi = Y[:, 2]
-dphi = Y[:, 3]
-ddpsi = [odesys(y, t, M, m, R, c, a, l, g)[2] for y, t in zip(Y, t)]
-ddphi = [odesys(y, t, M, m, R, c, a, l, g)[3] for y, t in zip(Y, t)]
+phi = Y[:, 0]
+psi = Y[:, 1]
+dphi = Y[:, 2]
+dpsi = Y[:, 3]
+ddphi = [odesys(y, t, M, m, R, c, a, l, g)[2] for y, t in zip(Y, t)]
+ddpsi = [odesys(y, t, M, m, R, c, a, l, g)[3] for y, t in zip(Y, t)]
 
 fig_for_graphs = plt.figure(figsize=[13, 7])
 
